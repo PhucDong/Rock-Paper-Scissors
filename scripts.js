@@ -1,4 +1,4 @@
-// Generate computer choice
+// Generate random computer choice
 function getComputerChoice() {
     let choices = ["Rock", "Paper", "Scissors"];
 
@@ -12,26 +12,13 @@ let computerCount = 0;
 let buttons = document.querySelectorAll("button");
 let body = document.querySelector("body");
 
-// Count score for player and computer
-function playerCounter() {
-    playerCount++;
-    return playerCount;
-}
-
-function computerCounter() {
-    computerCount++;
-    return computerCount;
-}
-
 // Display final result on screen after 5 rounds
 function displayFinalResult(playerCount, computerCount) {
     let div = document.createElement("div");
 
     if (playerCount === 5) {
-        console.log(playerCounter());
         div.textContent = `Player reachs 5 points first. Player wins!`;
     } else if (computerCount === 5) {
-        console.log(computerCounter());
         div.textContent = `Computer reachs 5 points first. Computer wins!`;
     }
 
@@ -49,29 +36,20 @@ function playRound(playerSelection, computerSelection) {
 
     if (playerSelection === computerSelection) {
         div2.textContent = `It's a draw!`;
-    } else if (playerSelection === "Rock" && computerSelection === "Scissors") {
-        playerCounter();
+    } else if ((playerSelection === "Rock" && computerSelection === "Scissors") ||
+                (playerSelection === "Scissors" && computerSelection === "Paper") ||
+                (playerSelection === "Paper" && computerSelection === "Rock")) {
+        playerCount++;
         div2.textContent = `Player wins!`;
-    } else if (playerSelection === "Scissors" && computerSelection === "Paper") {
-        playerCounter();
-        div2.textContent = `Player wins!`;
-    } else if (playerSelection === "Paper" && computerSelection === "Rock") {
-        playerCounter();
-        div2.textContent = `Player wins!`;
-    } else if (playerSelection === "Scissors" && computerSelection === "Rock") {
-        computerCounter();
-        div2.textContent = `Computer wins!`;
-    } else if (playerSelection === "Paper" && computerSelection === "Scissors") {
-        computerCounter();
-        div2.textContent = `Computer wins!`;
-    } else if (playerSelection === "Rock" && computerSelection === "Paper") {
-        computerCounter();
+    } else {
+        computerCount++;
         div2.textContent = `Computer wins!`;
     }
 
     body.appendChild(div2);
     div3.textContent = `Player: ${playerCount}. Computer: ${computerCount}`;
     body.appendChild(div3);
+
     displayFinalResult(playerCount, computerCount);
 }
 
