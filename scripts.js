@@ -9,8 +9,9 @@ function getComputerChoice() {
 
 let playerCount = 0;
 let computerCount = 0;
-let buttons = document.querySelectorAll("button");
-let body = document.querySelector("body");
+let buttons = document.querySelectorAll(".player-choice");
+let container = document.querySelector(".container");
+let resetBtn = document.querySelector("#reset-btn");
 
 // Display final result on screen after 5 rounds
 function displayFinalResult(playerCount, computerCount) {
@@ -22,7 +23,7 @@ function displayFinalResult(playerCount, computerCount) {
         div.textContent = `Computer reachs 5 points first. Computer wins!`;
     }
 
-    body.appendChild(div);
+    container.appendChild(div);
 }
 
 // Playing each round
@@ -32,7 +33,7 @@ let div3 = document.createElement("div");
 
 function playRound(playerSelection, computerSelection) {
     div1.textContent = `Player: ${playerSelection}. Computer: ${computerSelection}`;
-    body.appendChild(div1);
+    container.appendChild(div1);
 
     if (playerSelection === computerSelection) {
         div2.textContent = `It's a draw!`;
@@ -46,9 +47,9 @@ function playRound(playerSelection, computerSelection) {
         div2.textContent = `Computer wins!`;
     }
 
-    body.appendChild(div2);
+    container.appendChild(div2);
     div3.textContent = `Player: ${playerCount}. Computer: ${computerCount}`;
-    body.appendChild(div3);
+    container.appendChild(div3);
 
     displayFinalResult(playerCount, computerCount);
 }
@@ -67,3 +68,5 @@ function game() {
 }
 
 game();
+
+resetBtn.addEventListener("click", () => location.reload());
