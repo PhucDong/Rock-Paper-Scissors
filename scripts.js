@@ -1,3 +1,4 @@
+// Generate computer choice
 function getComputerChoice() {
     let choices = ["Rock", "Paper", "Scissors"];
 
@@ -6,82 +7,77 @@ function getComputerChoice() {
     return choices[randomIndex];
 }
 
-// console.log(getComputerChoice());
 let playerCount = 0;
 let computerCount = 0;
 let buttons = document.querySelectorAll("button");
 let body = document.querySelector("body");
 
+// Count score for player and computer
 function playerCounter() {
     playerCount++;
-
     return playerCount;
 }
 
 function computerCounter() {
     computerCount++;
-
     return computerCount;
 }
 
-function displayPlayerResult() {
-    let div3 = document.createElement("div");
-    playerCounter();
-    div3.textContent = `Player wins!`;
-    body.appendChild(div3);
-}
-
-function displayComputerResult() {
-    let div3 = document.createElement("div");
-    computerCounter();
-    div3.textContent = `Computer wins!`;
-    body.appendChild(div3);
-}
-
+// Display final result on screen after 5 rounds
 function displayFinalResult(playerCount, computerCount) {
-    let div4 = document.createElement("div");
+    let div = document.createElement("div");
 
     if (playerCount === 5) {
         console.log(playerCounter());
-        div4.textContent = `Player reachs 5 points first. Player wins!`;
-        body.appendChild(div4);
+        div.textContent = `Player reachs 5 points first. Player wins!`;
     } else if (computerCount === 5) {
         console.log(computerCounter());
-        div4.textContent = `Computer reachs 5 points first. Computer wins!`;
-        body.appendChild(div4);
+        div.textContent = `Computer reachs 5 points first. Computer wins!`;
     }
+
+    body.appendChild(div);
 }
 
+// Playing each round
+let div1 = document.createElement("div");
+let div2 = document.createElement("div");
+let div3 = document.createElement("div");
+
 function playRound(playerSelection, computerSelection) {
-    let div1 = document.createElement("div");
-    let div2 = document.createElement("div");
     div1.textContent = `Player: ${playerSelection}. Computer: ${computerSelection}`;
     body.appendChild(div1);
 
     if (playerSelection === computerSelection) {
         div2.textContent = `It's a draw!`;
-        body.appendChild(div2);
     } else if (playerSelection === "Rock" && computerSelection === "Scissors") {
-        displayPlayerResult();
+        playerCounter();
+        div2.textContent = `Player wins!`;
     } else if (playerSelection === "Scissors" && computerSelection === "Paper") {
-        displayPlayerResult();
+        playerCounter();
+        div2.textContent = `Player wins!`;
     } else if (playerSelection === "Paper" && computerSelection === "Rock") {
-        displayPlayerResult();
+        playerCounter();
+        div2.textContent = `Player wins!`;
     } else if (playerSelection === "Scissors" && computerSelection === "Rock") {
-        displayComputerResult();
+        computerCounter();
+        div2.textContent = `Computer wins!`;
     } else if (playerSelection === "Paper" && computerSelection === "Scissors") {
-        displayComputerResult();
+        computerCounter();
+        div2.textContent = `Computer wins!`;
     } else if (playerSelection === "Rock" && computerSelection === "Paper") {
-        displayComputerResult();
+        computerCounter();
+        div2.textContent = `Computer wins!`;
     }
 
+    body.appendChild(div2);
+    div3.textContent = `Player: ${playerCount}. Computer: ${computerCount}`;
+    body.appendChild(div3);
     displayFinalResult(playerCount, computerCount);
 }
 
-// Playing games
+// Playing the game
 function game() {
     let playerInput, computerInput;
-    // let div3 = document.createElement("div");
 
     buttons.forEach(button => {
         button.addEventListener("click", function() {
