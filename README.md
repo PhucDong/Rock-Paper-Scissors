@@ -1,2 +1,2 @@
 # Rock Paper Scissors
-This is a small project created by the Odin Project. The purpose is testing beginners with their skills with JavaScript.
+This is a small project based on the **Foundations of Web Programming** course of **The Odin Project**. The project reinforces beginners what they have learned about manipulating DOM elements.
